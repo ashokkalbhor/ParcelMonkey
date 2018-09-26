@@ -1,0 +1,14 @@
+{
+  "name": "ParcelMonkey",
+  "description": "Blank Project",
+  "main": "Main.xaml",
+  "dependencies": {},
+  "excludedData": [
+    "Private:*",
+    "*password*"
+  ],
+  "toolVersion": "18.2",
+  "projectVersion": "1.0.6818.24231",
+  "packOptions": {},
+  "runtimeOptions": {}
+}

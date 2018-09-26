@@ -1,0 +1,633 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Main_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:m="clr-namespace:MyActivity;assembly=MyActivity"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Core.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="sheetNames" />
+    </Flowchart.Variables>
+    <Flowchart.StartNode>
+      <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <m:ExcelSheetNames DisplayName="Excel sheet names" FilePath="C:\Users\akalbhor\Desktop\Salary Slips\ParcelMonkey\Parcel Monkey.xlsx" sap2010:WorkflowViewState.IdRef="ExcelSheetNames_2" SheetNames="[sheetNames]" />
+          <ui:ForEach x:TypeArguments="x:Object" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[sheetNames]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[item.ToString]" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </Sequence>
+      </FlowStep>
+    </Flowchart.StartNode>
+    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="Parcel Monkey.xlsx">
+        <ui:ExcelApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sd:DataTable" Name="DtExtracted" />
+                <Variable x:TypeArguments="x:Int32" Default="1" Name="counter" />
+                <Variable x:TypeArguments="x:Int32" Default="0" Name="r" />
+              </Sequence.Variables>
+              <ui:ExcelReadRange AddHeaders="True" DataTable="[DtExtracted]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
+                <ui:ExcelReadRange.Range>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:ExcelReadRange.Range>
+              </ui:ExcelReadRange>
+              <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="https://www.parcelmonkey.co.uk/">
+                <ui:OpenBrowser.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                      <ui:ForEachRow DataTable="[DtExtracted]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                        <ui:ForEachRow.Body>
+                          <ActivityAction x:TypeArguments="sd:DataRow">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:String" Name="DataVal" />
+                              </Sequence.Variables>
+                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="ui:GenericValue" Name="Strong" />
+                                </Sequence.Variables>
+                                <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT  get-quote__orig...'" sap2010:WorkflowViewState.IdRef="SelectItem_5" Item="[row(r).ToString]">
+                                  <ui:SelectItem.Items>
+                                    <scg:List x:TypeArguments="x:String" Capacity="50">
+                                      <x:String>United Kingdom</x:String>
+                                      <x:String>Northern Ireland</x:String>
+                                      <x:String>Republic Of Ireland</x:String>
+                                      <x:String>Jersey</x:String>
+                                      <x:String>Guernsey</x:String>
+                                      <x:String>USA</x:String>
+                                      <x:String>Australia</x:String>
+                                      <x:String>China</x:String>
+                                      <x:String>Canada</x:String>
+                                      <x:String>France - Paris</x:String>
+                                      <x:String>France - All other locations</x:String>
+                                      <x:String>Germany</x:String>
+                                      <x:String>Greece</x:String>
+                                      <x:String>Italy</x:String>
+                                      <x:String>Italy - Sardinia</x:String>
+                                      <x:String>Italy - Sicily</x:String>
+                                      <x:String>Poland</x:String>
+                                      <x:String>Portugal</x:String>
+                                      <x:String>Spain</x:String>
+                                      <x:String>Spain - Tenerife</x:String>
+                                      <x:String>Spain - Lanzarote</x:String>
+                                      <x:String>Spain - Gran Canaria</x:String>
+                                      <x:String>Spain - Fuerteventura</x:String>
+                                      <x:String>Spain - La Palma</x:String>
+                                      <x:String>Spain - Majorca</x:String>
+                                      <x:String>Spain - Menorca</x:String>
+                                      <x:String>Spain - Ibiza</x:String>
+                                      <x:String>Afghanistan</x:String>
+                                      <x:String>Albania</x:String>
+                                      <x:String>Algeria</x:String>
+                                      <x:String>American Samoa</x:String>
+                                      <x:String>Andorra</x:String>
+                                      <x:String>Angola</x:String>
+                                      <x:String>Anguilla</x:String>
+                                      <x:String>Antigua</x:String>
+                                      <x:String>Argentina</x:String>
+                                      <x:String>Armenia</x:String>
+                                      <x:String>Aruba</x:String>
+                                      <x:String>Australia</x:String>
+                                      <x:String>Australia - Adelaide</x:String>
+                                      <x:String>Australia - Brisbane</x:String>
+                                      <x:String>Australia - Melbourne</x:String>
+                                      <x:String>Australia - Sydney</x:String>
+                                      <x:String>Austria</x:String>
+                                      <x:String>Azerbaijan</x:String>
+                                      <x:String>Bahamas</x:String>
+                                      <x:String>Bahrain</x:String>
+                                      <x:String>Bangladesh</x:String>
+                                      <x:String>Barbados</x:String>
+                                      <x:String>Belarus</x:String>
+                                    </scg:List>
+                                  </ui:SelectItem.Items>
+                                  <ui:SelectItem.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0e137d024e806da78ea3e988099296e9" Selector="&lt;webctrl id='get-quote__origin' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
+                                  </ui:SelectItem.Target>
+                                </ui:SelectItem>
+                                <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT  get-quote__dest...'" sap2010:WorkflowViewState.IdRef="SelectItem_6" Item="[row(r+1).ToString]">
+                                  <ui:SelectItem.Items>
+                                    <scg:List x:TypeArguments="x:String" Capacity="50">
+                                      <x:String>United Kingdom</x:String>
+                                      <x:String>Northern Ireland</x:String>
+                                      <x:String>Republic Of Ireland</x:String>
+                                      <x:String>Jersey</x:String>
+                                      <x:String>Guernsey</x:String>
+                                      <x:String>USA</x:String>
+                                      <x:String>Australia</x:String>
+                                      <x:String>China</x:String>
+                                      <x:String>Canada</x:String>
+                                      <x:String>France - Paris</x:String>
+                                      <x:String>France - All other locations</x:String>
+                                      <x:String>Germany</x:String>
+                                      <x:String>Greece</x:String>
+                                      <x:String>Italy</x:String>
+                                      <x:String>Italy - Sardinia</x:String>
+                                      <x:String>Italy - Sicily</x:String>
+                                      <x:String>Poland</x:String>
+                                      <x:String>Portugal</x:String>
+                                      <x:String>Spain</x:String>
+                                      <x:String>Spain - Tenerife</x:String>
+                                      <x:String>Spain - Lanzarote</x:String>
+                                      <x:String>Spain - Gran Canaria</x:String>
+                                      <x:String>Spain - Fuerteventura</x:String>
+                                      <x:String>Spain - La Palma</x:String>
+                                      <x:String>Spain - Majorca</x:String>
+                                      <x:String>Spain - Menorca</x:String>
+                                      <x:String>Spain - Ibiza</x:String>
+                                      <x:String>Afghanistan</x:String>
+                                      <x:String>Albania</x:String>
+                                      <x:String>Algeria</x:String>
+                                      <x:String>American Samoa</x:String>
+                                      <x:String>Andorra</x:String>
+                                      <x:String>Angola</x:String>
+                                      <x:String>Anguilla</x:String>
+                                      <x:String>Antigua</x:String>
+                                      <x:String>Argentina</x:String>
+                                      <x:String>Armenia</x:String>
+                                      <x:String>Aruba</x:String>
+                                      <x:String>Australia</x:String>
+                                      <x:String>Australia - Adelaide</x:String>
+                                      <x:String>Australia - Brisbane</x:String>
+                                      <x:String>Australia - Melbourne</x:String>
+                                      <x:String>Australia - Sydney</x:String>
+                                      <x:String>Austria</x:String>
+                                      <x:String>Azerbaijan</x:String>
+                                      <x:String>Bahamas</x:String>
+                                      <x:String>Bahrain</x:String>
+                                      <x:String>Bangladesh</x:String>
+                                      <x:String>Barbados</x:String>
+                                      <x:String>Belarus</x:String>
+                                    </scg:List>
+                                  </ui:SelectItem.Items>
+                                  <ui:SelectItem.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3c09bb97b6affe699852ad1b54a445a9" Selector="&lt;webctrl id='get-quote__destination' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
+                                  </ui:SelectItem.Target>
+                                </ui:SelectItem>
+                                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  get-quote__weight'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="False" SimulateType="True" Text="[row(r+2).ToString]">
+                                  <ui:TypeInto.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5ebefb04c29bbcc81c380122ccdf3caf" Selector="&lt;webctrl id='get-quote__weight' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                  </ui:TypeInto.Target>
+                                </ui:TypeInto>
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition OffsetX="198" OffsetY="17" Position="TopLeft" />
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2262c0d207ba95a030db5cd940593f8c" Selector="&lt;webctrl aaname='Get Quote &amp;amp; Book' idx='1' tag='BUTTON' /&gt;" WaitForReady="COMPLETE" />
+                                  </ui:Click.Target>
+                                </ui:Click>
+                                <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'STRONG'" sap2010:WorkflowViewState.IdRef="GetValue_3">
+                                  <ui:GetValue.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="160a86e62d0c6b9c307aaa1d6ddb909f" Selector="&lt;webctrl tag='STRONG' idx='2' /&gt;" WaitForReady="COMPLETE" />
+                                  </ui:GetValue.Target>
+                                  <ui:GetValue.Value>
+                                    <OutArgument x:TypeArguments="ui:GenericValue">[Strong]</OutArgument>
+                                  </ui:GetValue.Value>
+                                </ui:GetValue>
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[counter.ToString]" TopMost="True" />
+                                <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[Strong]" />
+                                <ui:ExcelWriteCell Cell="[&quot;D&quot;+ (counter + 1).ToString]" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Sheet1" Text="[Strong.ToString]" />
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition OffsetX="191" OffsetY="26" Position="TopLeft" />
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="05ee26ae124b5eb80e30127544ed44a0" Selector="&lt;webctrl aaname='Parcel Monkey' tag='IMG' /&gt;" WaitForReady="COMPLETE" />
+                                  </ui:Click.Target>
+                                </ui:Click>
+                              </Sequence>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[counter + 1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEachRow.Body>
+                      </ui:ForEachRow>
+                      <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                        <ui:CommentOut.Body>
+                          <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <ui:ExcelWriteRange AddHeaders="False" DataTable="[DtExtracted]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="[&quot;D&quot; + counter.ToString]" />
+                          </Sequence>
+                        </ui:CommentOut.Body>
+                      </ui:CommentOut>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:OpenBrowser.Body>
+              </ui:OpenBrowser>
+            </Sequence>
+          </ActivityAction>
+        </ui:ExcelApplicationScope.Body>
+      </ui:ExcelApplicationScope>
+    </FlowStep>
+    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_3">
+      <Sequence DisplayName="Recording Sequence" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="ui:GenericValue" Name="Strong" />
+        </Sequence.Variables>
+        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'BookCheap Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="665fa0a082d5a3bf2adf6df36831a860" Selector="&lt;html app='chrome.exe' title='Book Cheap Parcel Delivery and Courier Services - Parcel Monkey' /&gt;">
+          <ui:BrowserScope.Body>
+            <ActivityAction x:TypeArguments="x:Object">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT  get-quote__orig...'" sap2010:WorkflowViewState.IdRef="SelectItem_3" Item="United Kingdom">
+                  <ui:SelectItem.Items>
+                    <scg:List x:TypeArguments="x:String" Capacity="50">
+                      <x:String>United Kingdom</x:String>
+                      <x:String>Northern Ireland</x:String>
+                      <x:String>Republic Of Ireland</x:String>
+                      <x:String>Jersey</x:String>
+                      <x:String>Guernsey</x:String>
+                      <x:String>USA</x:String>
+                      <x:String>Australia</x:String>
+                      <x:String>China</x:String>
+                      <x:String>Canada</x:String>
+                      <x:String>France - Paris</x:String>
+                      <x:String>France - All other locations</x:String>
+                      <x:String>Germany</x:String>
+                      <x:String>Greece</x:String>
+                      <x:String>Italy</x:String>
+                      <x:String>Italy - Sardinia</x:String>
+                      <x:String>Italy - Sicily</x:String>
+                      <x:String>Poland</x:String>
+                      <x:String>Portugal</x:String>
+                      <x:String>Spain</x:String>
+                      <x:String>Spain - Tenerife</x:String>
+                      <x:String>Spain - Lanzarote</x:String>
+                      <x:String>Spain - Gran Canaria</x:String>
+                      <x:String>Spain - Fuerteventura</x:String>
+                      <x:String>Spain - La Palma</x:String>
+                      <x:String>Spain - Majorca</x:String>
+                      <x:String>Spain - Menorca</x:String>
+                      <x:String>Spain - Ibiza</x:String>
+                      <x:String>Afghanistan</x:String>
+                      <x:String>Albania</x:String>
+                      <x:String>Algeria</x:String>
+                      <x:String>American Samoa</x:String>
+                      <x:String>Andorra</x:String>
+                      <x:String>Angola</x:String>
+                      <x:String>Anguilla</x:String>
+                      <x:String>Antigua</x:String>
+                      <x:String>Argentina</x:String>
+                      <x:String>Armenia</x:String>
+                      <x:String>Aruba</x:String>
+                      <x:String>Australia</x:String>
+                      <x:String>Australia - Adelaide</x:String>
+                      <x:String>Australia - Brisbane</x:String>
+                      <x:String>Australia - Melbourne</x:String>
+                      <x:String>Australia - Sydney</x:String>
+                      <x:String>Austria</x:String>
+                      <x:String>Azerbaijan</x:String>
+                      <x:String>Bahamas</x:String>
+                      <x:String>Bahrain</x:String>
+                      <x:String>Bangladesh</x:String>
+                      <x:String>Barbados</x:String>
+                      <x:String>Belarus</x:String>
+                    </scg:List>
+                  </ui:SelectItem.Items>
+                  <ui:SelectItem.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0e137d024e806da78ea3e988099296e9" Selector="&lt;webctrl id='get-quote__origin' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
+                  </ui:SelectItem.Target>
+                </ui:SelectItem>
+                <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT  get-quote__dest...'" sap2010:WorkflowViewState.IdRef="SelectItem_4" Item="Northern Ireland">
+                  <ui:SelectItem.Items>
+                    <scg:List x:TypeArguments="x:String" Capacity="50">
+                      <x:String>United Kingdom</x:String>
+                      <x:String>Northern Ireland</x:String>
+                      <x:String>Republic Of Ireland</x:String>
+                      <x:String>Jersey</x:String>
+                      <x:String>Guernsey</x:String>
+                      <x:String>USA</x:String>
+                      <x:String>Australia</x:String>
+                      <x:String>China</x:String>
+                      <x:String>Canada</x:String>
+                      <x:String>France - Paris</x:String>
+                      <x:String>France - All other locations</x:String>
+                      <x:String>Germany</x:String>
+                      <x:String>Greece</x:String>
+                      <x:String>Italy</x:String>
+                      <x:String>Italy - Sardinia</x:String>
+                      <x:String>Italy - Sicily</x:String>
+                      <x:String>Poland</x:String>
+                      <x:String>Portugal</x:String>
+                      <x:String>Spain</x:String>
+                      <x:String>Spain - Tenerife</x:String>
+                      <x:String>Spain - Lanzarote</x:String>
+                      <x:String>Spain - Gran Canaria</x:String>
+                      <x:String>Spain - Fuerteventura</x:String>
+                      <x:String>Spain - La Palma</x:String>
+                      <x:String>Spain - Majorca</x:String>
+                      <x:String>Spain - Menorca</x:String>
+                      <x:String>Spain - Ibiza</x:String>
+                      <x:String>Afghanistan</x:String>
+                      <x:String>Albania</x:String>
+                      <x:String>Algeria</x:String>
+                      <x:String>American Samoa</x:String>
+                      <x:String>Andorra</x:String>
+                      <x:String>Angola</x:String>
+                      <x:String>Anguilla</x:String>
+                      <x:String>Antigua</x:String>
+                      <x:String>Argentina</x:String>
+                      <x:String>Armenia</x:String>
+                      <x:String>Aruba</x:String>
+                      <x:String>Australia</x:String>
+                      <x:String>Australia - Adelaide</x:String>
+                      <x:String>Australia - Brisbane</x:String>
+                      <x:String>Australia - Melbourne</x:String>
+                      <x:String>Australia - Sydney</x:String>
+                      <x:String>Austria</x:String>
+                      <x:String>Azerbaijan</x:String>
+                      <x:String>Bahamas</x:String>
+                      <x:String>Bahrain</x:String>
+                      <x:String>Bangladesh</x:String>
+                      <x:String>Barbados</x:String>
+                      <x:String>Belarus</x:String>
+                    </scg:List>
+                  </ui:SelectItem.Items>
+                  <ui:SelectItem.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3c09bb97b6affe699852ad1b54a445a9" Selector="&lt;webctrl id='get-quote__destination' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
+                  </ui:SelectItem.Target>
+                </ui:SelectItem>
+                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  get-quote__weight'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="True" Text="23">
+                  <ui:TypeInto.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5ebefb04c29bbcc81c380122ccdf3caf" Selector="&lt;webctrl id='get-quote__weight' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                  </ui:TypeInto.Target>
+                </ui:TypeInto>
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition OffsetX="198" OffsetY="17" Position="TopLeft" />
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2262c0d207ba95a030db5cd940593f8c" Selector="&lt;webctrl aaname='Get Quote &amp;amp; Book' idx='1' tag='BUTTON' /&gt;" WaitForReady="COMPLETE" />
+                  </ui:Click.Target>
+                </ui:Click>
+                <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'STRONG'" sap2010:WorkflowViewState.IdRef="GetValue_2">
+                  <ui:GetValue.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="160a86e62d0c6b9c307aaa1d6ddb909f" Selector="&lt;webctrl tag='STRONG' idx='2' /&gt;" WaitForReady="COMPLETE" />
+                  </ui:GetValue.Target>
+                  <ui:GetValue.Value>
+                    <OutArgument x:TypeArguments="ui:GenericValue">[Strong]</OutArgument>
+                  </ui:GetValue.Value>
+                </ui:GetValue>
+                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[Strong.ToString]" TopMost="True" />
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition OffsetX="191" OffsetY="26" Position="TopLeft" />
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="05ee26ae124b5eb80e30127544ed44a0" Selector="&lt;webctrl aaname='Parcel Monkey' tag='IMG' /&gt;" WaitForReady="COMPLETE" />
+                  </ui:Click.Target>
+                </ui:Click>
+              </Sequence>
+            </ActivityAction>
+          </ui:BrowserScope.Body>
+        </ui:BrowserScope>
+      </Sequence>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <sads:DebugSymbol.Symbol>dz1DOlxVc2Vyc1xha2FsYmhvclxEZXNrdG9wXFNhbGFyeSBTbGlwc1xQYXJjZWxNb25rZXlcTWFpbi54YW1sCkED3AMPAgEBRwlVFAIBAkgLSOABAgEKSQtUGAIBA0jPAUjdAQIBDEhHSI8BAgELSX5JjAECAQhPEVEcAgEEUBNQfgIBBVBqUHsCAQY=</sads:DebugSymbol.Symbol>
+  </Flowchart>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="ExcelSheetNames_2" sap:VirtualizedContainerService.HintSize="286.666666666667,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="209.333333333333,62.6666666666667" />
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="231.333333333333,186.666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="286.666666666667,323.333333333333" />
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="200,52.6666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">340,24.02</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelReadRange_1" sap:VirtualizedContainerService.HintSize="424,58.6666666666667" />
+      <sap2010:ViewStateData Id="SelectItem_5" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="SelectItem_6" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="TypeInto_3" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_7" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="GetValue_3" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="MessageBox_3" sap:VirtualizedContainerService.HintSize="314,58.6666666666667" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="314,62.6666666666667" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_1" sap:VirtualizedContainerService.HintSize="314,86.6666666666667" />
+      <sap2010:ViewStateData Id="Click_8" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="336,1372">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="336,60.6666666666667" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="358,1596.66666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="388,1745.33333333333" />
+      <sap2010:ViewStateData Id="ExcelWriteRange_1" sap:VirtualizedContainerService.HintSize="314,86.6666666666667" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="336,210.666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="388,52.6666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="410,1962">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="424,2060.66666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="446,2283.33333333333">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="200,52.6666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,127.7</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SelectItem_3" sap:VirtualizedContainerService.HintSize="313.6,134.4" />
+      <sap2010:ViewStateData Id="SelectItem_4" sap:VirtualizedContainerService.HintSize="313.6,134.4" />
+      <sap2010:ViewStateData Id="TypeInto_2" sap:VirtualizedContainerService.HintSize="313.6,134.4" />
+      <sap2010:ViewStateData Id="Click_4" sap:VirtualizedContainerService.HintSize="313.6,107.2" />
+      <sap2010:ViewStateData Id="GetValue_2" sap:VirtualizedContainerService.HintSize="313.6,107.2" />
+      <sap2010:ViewStateData Id="MessageBox_1" sap:VirtualizedContainerService.HintSize="313.6,59.2" />
+      <sap2010:ViewStateData Id="Click_6" sap:VirtualizedContainerService.HintSize="313.6,107.2" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="336,1148.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BrowserScope_2" sap:VirtualizedContainerService.HintSize="414.4,1296" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="200,52.6666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,227.7</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="614,636">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">330,39.8333333333333 330,50.3533333333333 340,50.3533333333333</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="654,716" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
